@@ -1,3 +1,5 @@
 * store output configuration for anim and still images
 * recall configurations on start render
 * add progress barr to show rendering process
+* save render configurations to file
+* reload configurations from file
