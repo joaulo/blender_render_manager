@@ -9,7 +9,6 @@ from . import (
 import bpy
 from bpy.props import PointerProperty
 
-
 bl_info = {
     "name": "Render Collection Cameras",
     "author": "joaulo",
@@ -22,7 +21,6 @@ bl_info = {
     # "tracker_url": "",
     "category": "Render",
 }
-
 
 # ------------------------------------------------------------------------
 #    In-Panel Menus
@@ -47,7 +45,6 @@ classes = properties.classes + operators.classes + panels.classes
 # ------------------------------------------------------------------------
 #    Registration
 # ------------------------------------------------------------------------
-
 
 # def menu_func(self, context):
 #     self.layout.operator(RenderCollectionCamerasImg.bl_idname)

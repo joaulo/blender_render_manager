@@ -1,4 +1,5 @@
 import os
+import json
 import bpy
 
 
@@ -11,6 +12,10 @@ class RenderCollectionCamerasImg(bpy.types.Operator):
     bl_idname = "render.collection_cameras_images"
     bl_label = "Render Collection Cameras Images"
     bl_options = {'REGISTER', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.scene is not None
 
     def execute(self, context):
         scene = context.scene
@@ -33,6 +38,10 @@ class RenderCollectionCamerasAnim(bpy.types.Operator):
     bl_idname = "render.collection_cameras_animations"
     bl_label = "Render Collection Cameras Animations"
     bl_options = {'REGISTER', 'UNDO'}
+
+    @classmethod
+    def poll(cls, context):
+        return context.scene is not None
 
     def execute(self, context):
         scene = context.scene
@@ -58,8 +67,18 @@ class LoadRenderSettings(bpy.types.Operator):
     bl_label = "Load Render Settings"
     bl_options = {'REGISTER'}
 
+    @classmethod
+    def poll(cls, context):
+        return context.scene is not None
+
     def execute(self, context):
         print("TODO: load configuration from file and set values to scene")
+        scene = context.scene
+        with open('data.json', 'r', encoding='uff-8') as f:
+            p = json.load(f)
+            for sett, val in p.items():
+                print(sett, val)
+                # setattr(scene.render, sett, val)
 
         return {'FINISHED'}
 
@@ -70,8 +89,16 @@ class SaveRenderSettings(bpy.types.Operator):
     bl_label = "Save Render Settings"
     bl_options = {'REGISTER'}
 
+    @classmethod
+    def poll(cls, context):
+        return context.scene is not None
+
     def execute(self, context):
-        print("TODO: save render output configuration to file")
+        scene = context.scene
+        p = {sett: getattr(scene.render, sett)
+             for sett in dir(scene.render)}
+        with open('data.json', 'w', encoding='utf-8') as f:
+            json.dump(p, f, ensure_ascii=False, indent=4)
 
         return {'FINISHED'}
 
