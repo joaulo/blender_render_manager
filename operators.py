@@ -95,10 +95,23 @@ class SaveRenderSettings(bpy.types.Operator):
 
     def execute(self, context):
         scene = context.scene
-        p = {sett: getattr(scene.render, sett)
-             for sett in dir(scene.render)}
-        with open('data.json', 'w', encoding='utf-8') as f:
-            json.dump(p, f, ensure_ascii=False, indent=4)
+
+        # get properties list
+        # p = {sett: getattr(scene.render, sett) for sett in dir(scene.render)}
+        pl = {}
+        for p in scene.render.bl_rna.properties:
+            if p.identifier in {'rna_type'}:
+                continue
+            if p.is_readonly:
+                continue
+            print(p)
+            pl[p.identifier] = getattr(scene.render, p.identifier)
+
+        print(pl)
+
+        # with open(scene.render_collection_cameras.path_dir + 'data.json', 'w', encoding='utf-8') as f:
+        # json.dump(pl, f, ensure_ascii=False, indent=4)
+        # json.dump(pl, f, indent=4)
 
         return {'FINISHED'}
 
