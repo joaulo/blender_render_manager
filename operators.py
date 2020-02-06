@@ -19,7 +19,7 @@ class RenderCollectionCamerasImg(bpy.types.Operator):
 
     def execute(self, context):
         scene = context.scene
-        rcc = scene.rcc
+        rcc = scene.render_collection_cameras
         print("start rendering cameras in collection:", rcc.collection)
         for cam in [obj for obj in bpy.data.collections[rcc.collection].all_objects if obj.type == 'CAMERA']:
             # scene.camera = cam
@@ -45,7 +45,7 @@ class RenderCollectionCamerasAnim(bpy.types.Operator):
 
     def execute(self, context):
         scene = context.scene
-        rcc = scene.rcc
+        rcc = scene.render_collection_cameras
         print("start rendering cameras in collection:", rcc.collection)
         for cam in [obj for obj in bpy.data.collections[rcc.collection].all_objects if obj.type == 'CAMERA']:
             # scene.camera = cam
@@ -74,7 +74,7 @@ class LoadRenderSettings(bpy.types.Operator):
     def execute(self, context):
         print("TODO: load configuration from file and set values to scene")
         scene = context.scene
-        with open('data.json', 'r', encoding='uff-8') as f:
+        with open(scene.render_collection_cameras.path_dir + 'data.json', 'r', encoding='uff-8') as f:
             p = json.load(f)
             for sett, val in p.items():
                 print(sett, val)
@@ -100,18 +100,18 @@ class SaveRenderSettings(bpy.types.Operator):
         # p = {sett: getattr(scene.render, sett) for sett in dir(scene.render)}
         pl = {}
         for p in scene.render.bl_rna.properties:
-            if p.identifier in {'rna_type'}:
+            if p.identifier in {'rna_type', 'stamp_background', 'stamp_foreground'}:
                 continue
             if p.is_readonly:
                 continue
             print(p)
             pl[p.identifier] = getattr(scene.render, p.identifier)
 
-        print(pl)
+        import pprint
+        pprint.pprint(pl)
 
-        # with open(scene.render_collection_cameras.path_dir + 'data.json', 'w', encoding='utf-8') as f:
-        # json.dump(pl, f, ensure_ascii=False, indent=4)
-        # json.dump(pl, f, indent=4)
+        with open(scene.render_collection_cameras.path_dir + 'data.json', 'w', encoding='utf-8') as f:
+            json.dump(pl, f, ensure_ascii=False, indent=4)
 
         return {'FINISHED'}
 
