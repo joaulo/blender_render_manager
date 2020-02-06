@@ -13,7 +13,7 @@ class RenderCollectionCamerasPanel:
     bl_options = {'DEFAULT_CLOSED'}
 
 
-class RCC_PT_render_collection_cameras(RenderCollectionCamerasPanel, Panel):
+class RCC_PT_render_collection_cameras(RenderCollectionCamerasPanel, bpy.types.Panel):
     bl_idname = "RCC_PT_render_collection_cameras"
     bl_label = "Render Collection Cameras"
 
@@ -24,7 +24,7 @@ class RCC_PT_render_collection_cameras(RenderCollectionCamerasPanel, Panel):
     def draw(self, context):
         layout = self.layout
         scene = context.scene
-        rcc = scene.rcc
+        rcc = scene.render_collection_cameras
 
         layout.prop(rcc, "path_dir")
 #        layout.prop(rcc, "start_frame")
@@ -36,7 +36,7 @@ class RCC_PT_render_collection_cameras(RenderCollectionCamerasPanel, Panel):
         layout.separator()
 
 
-class RCC_PT_rcc_load_settings(RenderCollectionCamerasPanel, Panel):
+class RCC_PT_rcc_load_settings(RenderCollectionCamerasPanel, bpy.types.Panel):
     bl_parent_id = "RCC_PT_render_collection_cameras"
     bl_label = "Load Settings"
 
@@ -45,7 +45,7 @@ class RCC_PT_rcc_load_settings(RenderCollectionCamerasPanel, Panel):
         layout.operator("load.render_settings")
 
 
-class RCC_PT_rcc_save_settings(RenderCollectionCamerasPanel, Panel):
+class RCC_PT_rcc_save_settings(RenderCollectionCamerasPanel, bpy.types.Panel):
     bl_parent_id = "RCC_PT_render_collection_cameras"
     bl_label = "Save Settings"
 

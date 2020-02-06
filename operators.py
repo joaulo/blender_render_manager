@@ -1,4 +1,5 @@
 import os
+import json
 import bpy
 
 
@@ -12,9 +13,13 @@ class RenderCollectionCamerasImg(bpy.types.Operator):
     bl_label = "Render Collection Cameras Images"
     bl_options = {'REGISTER', 'UNDO'}
 
+    @classmethod
+    def poll(cls, context):
+        return context.scene is not None
+
     def execute(self, context):
         scene = context.scene
-        rcc = scene.rcc
+        rcc = scene.render_collection_cameras
         print("start rendering cameras in collection:", rcc.collection)
         for cam in [obj for obj in bpy.data.collections[rcc.collection].all_objects if obj.type == 'CAMERA']:
             # scene.camera = cam
@@ -34,9 +39,13 @@ class RenderCollectionCamerasAnim(bpy.types.Operator):
     bl_label = "Render Collection Cameras Animations"
     bl_options = {'REGISTER', 'UNDO'}
 
+    @classmethod
+    def poll(cls, context):
+        return context.scene is not None
+
     def execute(self, context):
         scene = context.scene
-        rcc = scene.rcc
+        rcc = scene.render_collection_cameras
         print("start rendering cameras in collection:", rcc.collection)
         for cam in [obj for obj in bpy.data.collections[rcc.collection].all_objects if obj.type == 'CAMERA']:
             # scene.camera = cam
@@ -58,8 +67,18 @@ class LoadRenderSettings(bpy.types.Operator):
     bl_label = "Load Render Settings"
     bl_options = {'REGISTER'}
 
+    @classmethod
+    def poll(cls, context):
+        return context.scene is not None
+
     def execute(self, context):
         print("TODO: load configuration from file and set values to scene")
+        scene = context.scene
+        with open(scene.render_collection_cameras.path_dir + 'data.json', 'r', encoding='uff-8') as f:
+            p = json.load(f)
+            for sett, val in p.items():
+                print(sett, val)
+                # setattr(scene.render, sett, val)
 
         return {'FINISHED'}
 
@@ -70,8 +89,29 @@ class SaveRenderSettings(bpy.types.Operator):
     bl_label = "Save Render Settings"
     bl_options = {'REGISTER'}
 
+    @classmethod
+    def poll(cls, context):
+        return context.scene is not None
+
     def execute(self, context):
-        print("TODO: save render output configuration to file")
+        scene = context.scene
+
+        # get properties list
+        # p = {sett: getattr(scene.render, sett) for sett in dir(scene.render)}
+        pl = {}
+        for p in scene.render.bl_rna.properties:
+            if p.identifier in {'rna_type', 'stamp_background', 'stamp_foreground'}:
+                continue
+            if p.is_readonly:
+                continue
+            print(p)
+            pl[p.identifier] = getattr(scene.render, p.identifier)
+
+        import pprint
+        pprint.pprint(pl)
+
+        with open(scene.render_collection_cameras.path_dir + 'data.json', 'w', encoding='utf-8') as f:
+            json.dump(pl, f, ensure_ascii=False, indent=4)
 
         return {'FINISHED'}
 
