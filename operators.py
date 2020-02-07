@@ -75,7 +75,7 @@ class LoadRenderSettings(bpy.types.Operator):
     def execute(self, context):
         print("TODO: load configuration from file and set values to scene")
         scene = context.scene
-        with open(scene.render_collection_cameras.path_dir + 'data.json', 'r', encoding='utf-8') as f:
+        with open(scene.render_collection_cameras.load_render_settings, 'r', encoding='utf-8') as f:
             pl = json.load(f)
             pprint.pprint(pl)
             for p, val in pl.items():
@@ -111,7 +111,7 @@ class SaveRenderSettings(bpy.types.Operator):
 
         pprint.pprint(pl)
 
-        with open(scene.render_collection_cameras.path_dir + 'data.json', 'w', encoding='utf-8') as f:
+        with open(scene.render_collection_cameras.save_render_settings, 'w', encoding='utf-8') as f:
             json.dump(pl, f, ensure_ascii=False, indent=4)
 
         return {'FINISHED'}

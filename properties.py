@@ -8,16 +8,16 @@ from bpy.props import StringProperty
 class RenderCollectionCamerasProperties(bpy.types.PropertyGroup):
 
     path_dir: StringProperty(
-        name="Output Dir",
-        description="Choose a directory:",
+        name="Render output dir:",
+        description="Choose a directory to save render files",
         default="",
         maxlen=1024,
         subtype='DIR_PATH'
     )
 
     collection: StringProperty(
-        name="Collection",
-        description="Choose a collection:",
+        name="Select a collection:",
+        description="Choose a collection with some cameras",
         default="",
     )
 
@@ -34,6 +34,22 @@ class RenderCollectionCamerasProperties(bpy.types.PropertyGroup):
     #     default=100,
     #     min=1
     # )
+
+    save_render_settings: StringProperty(
+        name="Save render settings to file:",
+        description="Choose a file to save render settings",
+        default="",
+        maxlen=1024,
+        subtype='FILE_PATH'
+    )
+
+    load_render_settings: StringProperty(
+        name="Load render settings from file:",
+        description="Choose a file to load render settings",
+        default="",
+        maxlen=1024,
+        subtype='FILE_PATH'
+    )
 
 
 classes = (RenderCollectionCamerasProperties,)

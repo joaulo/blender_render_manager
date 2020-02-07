@@ -42,6 +42,10 @@ class RCC_PT_rcc_load_settings(RenderCollectionCamerasPanel, bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
+        scene = context.scene
+        rcc = scene.render_collection_cameras
+
+        layout.prop(rcc, "load_render_settings")
         layout.operator("load.render_settings")
 
 
@@ -51,6 +55,10 @@ class RCC_PT_rcc_save_settings(RenderCollectionCamerasPanel, bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
+        scene = context.scene
+        rcc = scene.render_collection_cameras
+
+        layout.prop(rcc, "save_render_settings")
         layout.operator("save.render_settings")
 
 
