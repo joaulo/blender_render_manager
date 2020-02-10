@@ -103,6 +103,7 @@ class SaveRenderSettings(bpy.types.Operator):
         pl = {}
         # container for render settings
         pl['render'] = {}
+        print('reading render settings...')
         for p in scene.render.bl_rna.properties:
             if p.identifier in {'rna_type', 'stamp_background', 'stamp_foreground'}:
                 continue
@@ -111,6 +112,7 @@ class SaveRenderSettings(bpy.types.Operator):
             pl['render'][p.identifier] = getattr(scene.render, p.identifier)
         # container for image settings specific to still images rendering
         pl['image_settings'] = {}
+        print('reading image settings...')
         for p in scene.render.image_settings.bl_rna.properties:
             if p.is_readonly:
                 continue
@@ -118,6 +120,7 @@ class SaveRenderSettings(bpy.types.Operator):
             pl['image_settings'][p.identifier] = getattr(scene.render.image_settings, p.identifier)
         # container for ffmpeg settings specific to animation rendering
         pl['ffmpeg'] = {}
+        print('reading ffmpeg settings...')
         for p in scene.render.ffmpeg.bl_rna.properties:
             if p.is_readonly:
                 continue
@@ -125,9 +128,10 @@ class SaveRenderSettings(bpy.types.Operator):
             pl['ffmpeg'][p.identifier] = getattr(scene.render.ffmpeg, p.identifier)
         # container for frames settinga specific to animation rendering
         pl['frames'] = {}
-        pl['frames'][scene.frame_start.identifier] = getattr(scene, scene.frame_start.identifier)
-        pl['frames'][scene.frame_end.identifier] = getattr(scene, scene.frame_end.identifier)
-        pl['frames'][scene.frame_step.identifier] = getattr(scene, scene.frame_step.identifier)
+        print('reading animation frames settings...')
+        pl['frames']['frame_start'] = getattr(scene, 'frame_start')
+        pl['frames']['frame_end'] = getattr(scene, 'frame_end')
+        pl['frames']['frame_step'] = getattr(scene, 'frame_step')
 
         pprint.pprint(pl)
 
