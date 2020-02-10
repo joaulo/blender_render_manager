@@ -73,15 +73,34 @@ class LoadRenderSettings(bpy.types.Operator):
         return context.scene is not None
 
     def execute(self, context):
-        print("TODO: load configuration from file and set values to scene")
+        print("load configuration from file and set values to scene")
         scene = context.scene
         with open(scene.render_collection_cameras.load_render_settings, 'r', encoding='utf-8') as f:
             pl = json.load(f)
             pprint.pprint(pl)
-            for p, val in pl.items():
-                print(p, val)
-                setattr(scene.render, p, val)
-
+            for section, plist in pl.items():
+                # print(section)
+                if section == 'render':
+                    print('loading render params...')
+                    for p, val in plist.items():
+                        # print(p, val)
+                        setattr(scene.render, p, val)
+                elif section == 'image_settings':
+                    print('loading image_settings...')
+                    for p, val in plist.items():
+                        # print(p, val)
+                        setattr(scene.render.image_settings, p, val)
+                elif section == 'ffmpeg':
+                    print('loading ffmpeg...')
+                    for p, val in plist.items():
+                        # print(p, val)
+                        setattr(scene.render.ffmpeg, p, val)
+                elif section == 'frames':
+                    print('loading frames...')
+                    for p, val in plist.items():
+                        # print(p, val)
+                        setattr(scene, p, val)
+        print('loading completed')
         return {'FINISHED'}
 
 
@@ -97,6 +116,7 @@ class SaveRenderSettings(bpy.types.Operator):
 
     def execute(self, context):
         scene = context.scene
+        print('-> save render settings to file:', scene.render_collection_cameras.save_render_settings)
 
         # get properties list
         # p = {sett: getattr(scene.render, sett) for sett in dir(scene.render)}
@@ -133,11 +153,12 @@ class SaveRenderSettings(bpy.types.Operator):
         pl['frames']['frame_end'] = getattr(scene, 'frame_end')
         pl['frames']['frame_step'] = getattr(scene, 'frame_step')
 
-        pprint.pprint(pl)
+        # pprint.pprint(pl)
 
         with open(scene.render_collection_cameras.save_render_settings, 'w', encoding='utf-8') as f:
             json.dump(pl, f, ensure_ascii=False, indent=4)
 
+        print('saving completed')
         return {'FINISHED'}
 
 
