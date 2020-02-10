@@ -101,13 +101,33 @@ class SaveRenderSettings(bpy.types.Operator):
         # get properties list
         # p = {sett: getattr(scene.render, sett) for sett in dir(scene.render)}
         pl = {}
+        # container for render settings
+        pl['render'] = {}
         for p in scene.render.bl_rna.properties:
             if p.identifier in {'rna_type', 'stamp_background', 'stamp_foreground'}:
                 continue
             if p.is_readonly:
                 continue
-            print(p)
-            pl[p.identifier] = getattr(scene.render, p.identifier)
+            pl['render'][p.identifier] = getattr(scene.render, p.identifier)
+        # container for image settings specific to still images rendering
+        pl['image_settings'] = {}
+        for p in scene.render.image_settings.bl_rna.properties:
+            if p.is_readonly:
+                continue
+            # print(p)
+            pl['image_settings'][p.identifier] = getattr(scene.render.image_settings, p.identifier)
+        # container for ffmpeg settings specific to animation rendering
+        pl['ffmpeg'] = {}
+        for p in scene.render.ffmpeg.bl_rna.properties:
+            if p.is_readonly:
+                continue
+            # print(p)
+            pl['ffmpeg'][p.identifier] = getattr(scene.render.ffmpeg, p.identifier)
+        # container for frames settinga specific to animation rendering
+        pl['frames'] = {}
+        pl['frames'][scene.frame_start.identifier] = getattr(scene, scene.frame_start.identifier)
+        pl['frames'][scene.frame_end.identifier] = getattr(scene, scene.frame_end.identifier)
+        pl['frames'][scene.frame_step.identifier] = getattr(scene, scene.frame_step.identifier)
 
         pprint.pprint(pl)
 
