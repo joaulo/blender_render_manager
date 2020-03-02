@@ -1,3 +1,6 @@
-# render-collection-cameras
+# blender-render-manager
 
-Blender addon to render all cameras in a collection sequentially.
+Blender addon to manage render, with this addon you can:
+* save render settings to file
+* load render settings from file
+* render all cameras in a selected collection sequentially
