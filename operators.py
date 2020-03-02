@@ -25,7 +25,7 @@ class RenderCollectionCamerasImg(bpy.types.Operator):
         for cam in [obj for obj in bpy.data.collections[rcc.collection].all_objects if obj.type == 'CAMERA']:
             # scene.camera = cam
             # scene.render.image_settings.engine = 'BLENDER_EEVEE'
-            scene.render.image_settings.file_format = 'JPEG'
+            # scene.render.image_settings.file_format = 'JPEG'
             # scene.render.image_settings.compression = 96
             scene.render.filepath = os.path.join(rcc.path_dir, cam.name)
             bpy.ops.render.render(write_still=True)
@@ -51,9 +51,9 @@ class RenderCollectionCamerasAnim(bpy.types.Operator):
         for cam in [obj for obj in bpy.data.collections[rcc.collection].all_objects if obj.type == 'CAMERA']:
             # scene.camera = cam
             # scene.render.image_settings.engine = 'BLENDER_EEVEE'
-            scene.render.image_settings.file_format = 'FFMPEG'
-            scene.render.ffmpeg.format = 'MPEG4'
-            scene.render.ffmpeg.codec = 'MPEG4'
+            # scene.render.image_settings.file_format = 'FFMPEG'
+            # scene.render.ffmpeg.format = 'MPEG4'
+            # scene.render.ffmpeg.codec = 'H264'
 
             scene.render.filepath = os.path.join(rcc.path_dir, cam.name)
             bpy.ops.render.render(animation=True, write_still=False)
