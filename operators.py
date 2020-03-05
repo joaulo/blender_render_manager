@@ -8,10 +8,10 @@ import bpy
 #    Operators
 # ------------------------------------------------------------------------
 
-class RenderCollectionCamerasImg(bpy.types.Operator):
-    """Render Collection Cameras Images"""
-    bl_idname = "render.collection_cameras_images"
-    bl_label = "Render Collection Cameras Images"
+class RenderManagerImg(bpy.types.Operator):
+    """Render Manager::Images"""
+    bl_idname = "render.manage_images"
+    bl_label = "Render Manager::Images"
     bl_options = {'REGISTER', 'UNDO'}
 
     @classmethod
@@ -20,24 +20,24 @@ class RenderCollectionCamerasImg(bpy.types.Operator):
 
     def execute(self, context):
         scene = context.scene
-        rcc = scene.render_collection_cameras
-        print("start rendering cameras in collection:", rcc.collection)
-        for cam in [obj for obj in bpy.data.collections[rcc.collection].all_objects if obj.type == 'CAMERA']:
+        render_manager = scene.render_manager
+        print("start rendering cameras in collection:", render_manager.collection)
+        for cam in [obj for obj in bpy.data.collections[render_manager.collection].all_objects if obj.type == 'CAMERA']:
             # scene.camera = cam
             # scene.render.image_settings.engine = 'BLENDER_EEVEE'
             # scene.render.image_settings.file_format = 'JPEG'
             # scene.render.image_settings.compression = 96
-            scene.render.filepath = os.path.join(rcc.path_dir, cam.name)
+            scene.render.filepath = os.path.join(render_manager.path_dir, cam.name)
             bpy.ops.render.render(write_still=True)
-            scene.render.filepath = rcc.path_dir
+            scene.render.filepath = render_manager.path_dir
 
         return {'FINISHED'}
 
 
-class RenderCollectionCamerasAnim(bpy.types.Operator):
-    """Render Collection Cameras Animations"""
-    bl_idname = "render.collection_cameras_animations"
-    bl_label = "Render Collection Cameras Animations"
+class RenderManagerAnim(bpy.types.Operator):
+    """Render Manager::Animations"""
+    bl_idname = "render.manage_animations"
+    bl_label = "Render Manager::Animations"
     bl_options = {'REGISTER', 'UNDO'}
 
     @classmethod
@@ -46,18 +46,18 @@ class RenderCollectionCamerasAnim(bpy.types.Operator):
 
     def execute(self, context):
         scene = context.scene
-        rcc = scene.render_collection_cameras
-        print("start rendering cameras in collection:", rcc.collection)
-        for cam in [obj for obj in bpy.data.collections[rcc.collection].all_objects if obj.type == 'CAMERA']:
+        render_manager = scene.render_manager
+        print("start rendering cameras in collection:", render_manager.collection)
+        for cam in [obj for obj in bpy.data.collections[render_manager.collection].all_objects if obj.type == 'CAMERA']:
             # scene.camera = cam
             # scene.render.image_settings.engine = 'BLENDER_EEVEE'
             # scene.render.image_settings.file_format = 'FFMPEG'
             # scene.render.ffmpeg.format = 'MPEG4'
             # scene.render.ffmpeg.codec = 'H264'
 
-            scene.render.filepath = os.path.join(rcc.path_dir, cam.name)
+            scene.render.filepath = os.path.join(render_manager.path_dir, cam.name)
             bpy.ops.render.render(animation=True, write_still=False)
-            scene.render.filepath = rcc.path_dir
+            scene.render.filepath = render_manager.path_dir
 
         return {'FINISHED'}
 
@@ -75,7 +75,7 @@ class LoadRenderSettings(bpy.types.Operator):
     def execute(self, context):
         print("load configuration from file and set values to scene")
         scene = context.scene
-        with open(scene.render_collection_cameras.load_render_settings, 'r', encoding='utf-8') as f:
+        with open(scene.render_manager.load_render_settings, 'r', encoding='utf-8') as f:
             pl = json.load(f)
             pprint.pprint(pl)
             for section, plist in pl.items():
@@ -116,7 +116,7 @@ class SaveRenderSettings(bpy.types.Operator):
 
     def execute(self, context):
         scene = context.scene
-        print('-> save render settings to file:', scene.render_collection_cameras.save_render_settings)
+        print('-> save render settings to file:', scene.render_manager.save_render_settings)
 
         # get properties list
         # p = {sett: getattr(scene.render, sett) for sett in dir(scene.render)}
@@ -155,7 +155,7 @@ class SaveRenderSettings(bpy.types.Operator):
 
         # pprint.pprint(pl)
 
-        with open(scene.render_collection_cameras.save_render_settings, 'w', encoding='utf-8') as f:
+        with open(scene.render_manager.save_render_settings, 'w', encoding='utf-8') as f:
             json.dump(pl, f, ensure_ascii=False, indent=4)
 
         print('saving completed')
@@ -163,8 +163,8 @@ class SaveRenderSettings(bpy.types.Operator):
 
 
 classes = (
-    RenderCollectionCamerasImg,
-    RenderCollectionCamerasAnim,
+    RenderManagerImg,
+    RenderManagerAnim,
     LoadRenderSettings,
     SaveRenderSettings,
 )

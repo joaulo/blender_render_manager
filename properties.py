@@ -5,7 +5,7 @@ import bpy
 from bpy.props import StringProperty
 
 
-class RenderCollectionCamerasProperties(bpy.types.PropertyGroup):
+class RenderManagerProperties(bpy.types.PropertyGroup):
 
     path_dir: StringProperty(
         name="Render output dir:",
@@ -52,4 +52,4 @@ class RenderCollectionCamerasProperties(bpy.types.PropertyGroup):
     )
 
 
-classes = (RenderCollectionCamerasProperties,)
+classes = (RenderManagerProperties,)

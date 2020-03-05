@@ -10,7 +10,7 @@ import bpy
 from bpy.props import PointerProperty
 
 bl_info = {
-    "name": "Render Collection Cameras",
+    "name": "Render Manager",
     "author": "joaulo",
     "version": (1, 0, 0),
     "blender": (2, 80, 0),
@@ -47,21 +47,21 @@ classes = properties.classes + operators.classes + panels.classes
 # ------------------------------------------------------------------------
 
 # def menu_func(self, context):
-#     self.layout.operator(RenderCollectionCamerasImg.bl_idname)
-#     self.layout.operator(RenderCollectionCamerasAnim.bl_idname)
+#     self.layout.operator(RenderManagerImg.bl_idname)
+#     self.layout.operator(RenderManagerAnim.bl_idname)
 
 
 def register():
     for cls in classes:
         bpy.utils.register_class(cls)
-    bpy.types.Scene.render_collection_cameras = PointerProperty(
-        type=properties.RenderCollectionCamerasProperties)
+    bpy.types.Scene.render_manager = PointerProperty(
+        type=properties.RenderManagerProperties)
 #    bpy.types.TOPBAR_MT_render.append(menu_func)
 
 
 def unregister():
     #    bpy.types.TOPBAR_MT_render.remove(menu_func)
-    del bpy.types.Scene.render_collection_cameras
+    del bpy.types.Scene.render_manager
     for cls in reversed(classes):
         bpy.utils.unregister_class(cls)
 

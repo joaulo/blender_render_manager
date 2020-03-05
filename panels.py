@@ -5,7 +5,7 @@ import bpy
 #    Panel in Object Mode
 # ------------------------------------------------------------------------
 
-class RenderCollectionCamerasPanel:
+class RenderManagerPanel:
     bl_space_type = "PROPERTIES"
     bl_region_type = "WINDOW"  # UI
     bl_category = "RCC"
@@ -13,8 +13,8 @@ class RenderCollectionCamerasPanel:
     bl_options = {'DEFAULT_CLOSED'}
 
 
-class RCC_PT_render_collection_cameras(RenderCollectionCamerasPanel, bpy.types.Panel):
-    bl_idname = "RCC_PT_render_collection_cameras"
+class RM_PT_RenderManager(RenderManagerPanel, bpy.types.Panel):
+    bl_idname = "RM_PT_RenderManager"
     bl_label = "Render Collection Cameras"
 
 #    @classmethod
@@ -24,46 +24,46 @@ class RCC_PT_render_collection_cameras(RenderCollectionCamerasPanel, bpy.types.P
     def draw(self, context):
         layout = self.layout
         scene = context.scene
-        rcc = scene.render_collection_cameras
+        render_manager = scene.render_manager
 
-        layout.prop(rcc, "path_dir")
-#        layout.prop(rcc, "start_frame")
-#        layout.prop(rcc, "end_frame")
-        layout.prop_search(rcc, "collection", bpy.data, "collections")
-        layout.operator("render.collection_cameras_images")
-        layout.operator("render.collection_cameras_animations")
+        layout.prop(render_manager, "path_dir")
+#        layout.prop(render_manager, "start_frame")
+#        layout.prop(render_manager, "end_frame")
+        layout.prop_search(render_manager, "collection", bpy.data, "collections")
+        layout.operator("render.manage_images")
+        layout.operator("render.manage_animations")
         # layout.menu(OBJECT_MT_CustomMenu.bl_idname, text="Presets", icon="SCENE")
         layout.separator()
 
 
-class RCC_PT_rcc_load_settings(RenderCollectionCamerasPanel, bpy.types.Panel):
-    bl_parent_id = "RCC_PT_render_collection_cameras"
+class RM_PT_LoadSettings(RenderManagerPanel, bpy.types.Panel):
+    bl_parent_id = "RM_PT_LoadSettings"
     bl_label = "Load Settings"
 
     def draw(self, context):
         layout = self.layout
         scene = context.scene
-        rcc = scene.render_collection_cameras
+        render_manager = scene.render_manager
 
-        layout.prop(rcc, "load_render_settings")
+        layout.prop(render_manager, "load_render_settings")
         layout.operator("load.render_settings")
 
 
-class RCC_PT_rcc_save_settings(RenderCollectionCamerasPanel, bpy.types.Panel):
-    bl_parent_id = "RCC_PT_render_collection_cameras"
+class RM_PT_SaveSettings(RenderManagerPanel, bpy.types.Panel):
+    bl_parent_id = "RM_PT_SaveSettings"
     bl_label = "Save Settings"
 
     def draw(self, context):
         layout = self.layout
         scene = context.scene
-        rcc = scene.render_collection_cameras
+        render_manager = scene.render_manager
 
-        layout.prop(rcc, "save_render_settings")
+        layout.prop(render_manager, "save_render_settings")
         layout.operator("save.render_settings")
 
 
 classes = (
-    RCC_PT_render_collection_cameras,
-    RCC_PT_rcc_load_settings,
-    RCC_PT_rcc_save_settings,
+    RM_PT_RenderManager,
+    RM_PT_LoadSettings,
+    RM_PT_SaveSettings,
 )
