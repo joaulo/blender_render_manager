@@ -37,7 +37,7 @@ class RM_PT_RenderManager(RenderManagerPanel, bpy.types.Panel):
 
 
 class RM_PT_LoadSettings(RenderManagerPanel, bpy.types.Panel):
-    bl_parent_id = "RM_PT_LoadSettings"
+    bl_parent_id = "RM_PT_RenderManager"
     bl_label = "Load Settings"
 
     def draw(self, context):
@@ -50,7 +50,7 @@ class RM_PT_LoadSettings(RenderManagerPanel, bpy.types.Panel):
 
 
 class RM_PT_SaveSettings(RenderManagerPanel, bpy.types.Panel):
-    bl_parent_id = "RM_PT_SaveSettings"
+    bl_parent_id = "RM_PT_RenderManager"
     bl_label = "Save Settings"
 
     def draw(self, context):
