@@ -23,7 +23,7 @@ class RenderManagerImg(bpy.types.Operator):
         render_manager = scene.render_manager
         print("start rendering cameras in collection:", render_manager.collection)
         for cam in [obj for obj in bpy.data.collections[render_manager.collection].all_objects if obj.type == 'CAMERA']:
-            # scene.camera = cam
+            scene.camera = cam
             # scene.render.image_settings.engine = 'BLENDER_EEVEE'
             # scene.render.image_settings.file_format = 'JPEG'
             # scene.render.image_settings.compression = 96
@@ -49,7 +49,7 @@ class RenderManagerAnim(bpy.types.Operator):
         render_manager = scene.render_manager
         print("start rendering cameras in collection:", render_manager.collection)
         for cam in [obj for obj in bpy.data.collections[render_manager.collection].all_objects if obj.type == 'CAMERA']:
-            # scene.camera = cam
+            scene.camera = cam
             # scene.render.image_settings.engine = 'BLENDER_EEVEE'
             # scene.render.image_settings.file_format = 'FFMPEG'
             # scene.render.ffmpeg.format = 'MPEG4'
