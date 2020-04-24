@@ -1,5 +1,3 @@
-* store output configuration for anim and still images
-* recall configurations on start render
-* add progress barr to show rendering process
-* save render configurations to file
-* reload configurations from file
+* recall configurations on start render for each camera
+* add progress bar to show rendering process
+* add a button to stop render process

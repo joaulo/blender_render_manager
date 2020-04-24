@@ -15,7 +15,7 @@ bl_info = {
     "version": (1, 0, 0),
     "blender": (2, 80, 0),
     "location": "Render output panel",
-    "description": "save/load render output settings and start render still images or animations for all the cameras in the selected collection",
+    "description": "save/load render output settings and start render still images or animations in sequence for all the cameras in the selected collection",
     # "warning": "",  # used for warning icon and text in addons panel
     "wiki_url": "",
     # "tracker_url": "",
@@ -47,8 +47,8 @@ classes = properties.classes + operators.classes + panels.classes
 # ------------------------------------------------------------------------
 
 # def menu_func(self, context):
-#     self.layout.operator(RenderManagerImg.bl_idname)
-#     self.layout.operator(RenderManagerAnim.bl_idname)
+#     self.layout.operator(JSWK_OT_render_manager_images.bl_idname)
+#     self.layout.operator(JSWK_OT_render_manager_animations.bl_idname)
 
 
 def register():

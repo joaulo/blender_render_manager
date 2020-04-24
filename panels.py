@@ -13,8 +13,8 @@ class RenderManagerPanel:
     bl_options = {'DEFAULT_CLOSED'}
 
 
-class RM_PT_RenderManager(RenderManagerPanel, bpy.types.Panel):
-    bl_idname = "RM_PT_RenderManager"
+class JSWK_PT_RenderManager(RenderManagerPanel, bpy.types.Panel):
+    bl_idname = "JSWK_PT_RenderManager"
     bl_label = "Render Collection Cameras"
 
 #    @classmethod
@@ -30,14 +30,14 @@ class RM_PT_RenderManager(RenderManagerPanel, bpy.types.Panel):
 #        layout.prop(render_manager, "start_frame")
 #        layout.prop(render_manager, "end_frame")
         layout.prop_search(render_manager, "collection", bpy.data, "collections")
-        layout.operator("render.manage_images")
-        layout.operator("render.manage_animations")
+        layout.operator("jswk.render_manager_images")
+        layout.operator("jswk.render_manager_animations")
         # layout.menu(OBJECT_MT_CustomMenu.bl_idname, text="Presets", icon="SCENE")
         layout.separator()
 
 
-class RM_PT_LoadSettings(RenderManagerPanel, bpy.types.Panel):
-    bl_parent_id = "RM_PT_RenderManager"
+class JSWK_PT_LoadSettings(RenderManagerPanel, bpy.types.Panel):
+    bl_parent_id = "JSWK_PT_RenderManager"
     bl_label = "Load Settings"
 
     def draw(self, context):
@@ -46,11 +46,11 @@ class RM_PT_LoadSettings(RenderManagerPanel, bpy.types.Panel):
         render_manager = scene.render_manager
 
         layout.prop(render_manager, "load_render_settings")
-        layout.operator("load.render_settings")
+        layout.operator("jswk.load_render_settings")
 
 
-class RM_PT_SaveSettings(RenderManagerPanel, bpy.types.Panel):
-    bl_parent_id = "RM_PT_RenderManager"
+class JSWK_PT_SaveSettings(RenderManagerPanel, bpy.types.Panel):
+    bl_parent_id = "JSWK_PT_RenderManager"
     bl_label = "Save Settings"
 
     def draw(self, context):
@@ -59,11 +59,11 @@ class RM_PT_SaveSettings(RenderManagerPanel, bpy.types.Panel):
         render_manager = scene.render_manager
 
         layout.prop(render_manager, "save_render_settings")
-        layout.operator("save.render_settings")
+        layout.operator("jswk.save_render_settings")
 
 
 classes = (
-    RM_PT_RenderManager,
-    RM_PT_LoadSettings,
-    RM_PT_SaveSettings,
+    JSWK_PT_RenderManager,
+    JSWK_PT_LoadSettings,
+    JSWK_PT_SaveSettings,
 )

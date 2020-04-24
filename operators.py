@@ -8,9 +8,9 @@ import bpy
 #    Operators
 # ------------------------------------------------------------------------
 
-class RenderManagerImg(bpy.types.Operator):
+class JSWK_OT_render_manager_images(bpy.types.Operator):
     """Render Manager::Images"""
-    bl_idname = "render.manage_images"
+    bl_idname = "jswk.render_manager_images"
     bl_label = "Render Manager::Images"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -34,9 +34,9 @@ class RenderManagerImg(bpy.types.Operator):
         return {'FINISHED'}
 
 
-class RenderManagerAnim(bpy.types.Operator):
+class JSWK_OT_render_manager_animations(bpy.types.Operator):
     """Render Manager::Animations"""
-    bl_idname = "render.manage_animations"
+    bl_idname = "jswk.render_manager_animations"
     bl_label = "Render Manager::Animations"
     bl_options = {'REGISTER', 'UNDO'}
 
@@ -62,9 +62,9 @@ class RenderManagerAnim(bpy.types.Operator):
         return {'FINISHED'}
 
 
-class LoadRenderSettings(bpy.types.Operator):
+class JSWK_OT_load_render_settings(bpy.types.Operator):
     """Load render settings previously saved to configuration file"""
-    bl_idname = "load.render_settings"
+    bl_idname = "jswk.load_render_settings"
     bl_label = "Load Render Settings"
     bl_options = {'REGISTER'}
 
@@ -104,9 +104,9 @@ class LoadRenderSettings(bpy.types.Operator):
         return {'FINISHED'}
 
 
-class SaveRenderSettings(bpy.types.Operator):
+class JSWK_OT_save_render_settings(bpy.types.Operator):
     """Save render output settings to configuration file"""
-    bl_idname = "save.render_settings"
+    bl_idname = "jswk.save_render_settings"
     bl_label = "Save Render Settings"
     bl_options = {'REGISTER'}
 
@@ -163,8 +163,8 @@ class SaveRenderSettings(bpy.types.Operator):
 
 
 classes = (
-    RenderManagerImg,
-    RenderManagerAnim,
-    LoadRenderSettings,
-    SaveRenderSettings,
+    JSWK_OT_render_manager_images,
+    JSWK_OT_render_manager_animations,
+    JSWK_OT_load_render_settings,
+    JSWK_OT_save_render_settings,
 )
