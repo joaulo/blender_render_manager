@@ -15,7 +15,7 @@ class RenderManagerPanel:
 
 class JSWK_PT_RenderManager(RenderManagerPanel, bpy.types.Panel):
     bl_idname = "JSWK_PT_RenderManager"
-    bl_label = "Render Collection Cameras"
+    bl_label = "Render Manager"
 
 #    @classmethod
 #    def poll(self,context):
