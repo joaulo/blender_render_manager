@@ -11,15 +11,15 @@ from bpy.props import PointerProperty
 
 bl_info = {
     "name": "Render Manager",
-    "author": "joaulo",
+    "author": "joaulo <jsoftworks@joaulo.com>",
     "version": (1, 0, 0),
     "blender": (2, 80, 0),
+    "category": "Render",
     "location": "Render output panel",
     "description": "save/load render output settings and start render still images or animations in sequence for all the cameras in the selected collection",
     # "warning": "",  # used for warning icon and text in addons panel
     "wiki_url": "",
     # "tracker_url": "",
-    "category": "Render",
 }
 
 # ------------------------------------------------------------------------
