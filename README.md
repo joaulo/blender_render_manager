@@ -32,6 +32,7 @@ In both panels there is a field where you can select the path and the file to lo
 # Limitations and known problems
 
 * actually it is not possible to use different render settings for each camera detected in a collection! It is suggested to group the cameras in different collections according to the render settings. As a consequence of using the same settings, animations also start and end from the same frames.
+* currently the extension of the files saved and loaded by the addon is not imposed, however it will be adopted the extension "*.brm*" in the future
 * do not use the relative path in the selection of files or folders within the addon, use only absolute paths! Due to a still unresolved problem, using the relative path with the file or folder will result in an error message when executing the command. To use absolute paths, after clicking on the folder icon next to the selection field, use the following settings in the path selection window:
 
    * *select the gear icon at the top right:*
@@ -51,3 +52,4 @@ In both panels there is a field where you can select the path and the file to lo
 
 * save different settings for each camera
 * load specific settings for each camera before launching the render
+* manage file extension
