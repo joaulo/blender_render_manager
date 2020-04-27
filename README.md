@@ -1,3 +1,4 @@
+![Blender Render Manager](https://www.joaulo.com/media/projects/project_blender-render-manager-blender-addon/preview_big.jpg)
 # blender-render-manager
 
 Questo addon nasce dalla esigenza di renderizzare durante la notte un certo numero di telecamere inserite nella scena.
@@ -11,6 +12,8 @@ Si installa come un normale addon di Blender, basta scaricare il file .zip sul p
 # Come funziona?
 
 Una volta installato ed attivato, l'interfaccia dell'addon sarà visibile in un pannello dedicato chiamato "Render Manager" nella sezione "Output Properties":
+
+![Render Manager Panel](https://www.joaulo.com/media/uploads/2020/04/26/screenshot_20200426_191102.jpeg)
 
 Nell'ordine dall'alto al basso:
 
@@ -31,11 +34,18 @@ In entrambe i pannelli è presente un campo in cui è possibile selezionare il p
 * non è possibile utilizzare impostazioni di render differenti per i render lanciati in sequenza sulle varie telecamere trovate in una collezione! Si suggerisce di raggruppare le telecamere in collezioni differenti a seconda delle impostazioni di render. Come conseguenza all'utilizzo delle medesime impostazioni, anche i render delle animazioni iniziano e finiscono dagli stessi frames.
 * non utilizzare il percorso relativo nelle selezioni di files o cartelle all'interno dell'addon, utilizzate solo percorsi assoluti! A causa di un problema non ancora risolto, utilizzando il percorso relativo il file o la cartella non verranno trovati risultando in un messaggio di errore all'esecuzione del comando. Per utilizzare i percorsi assoluti, dopo aver cliccato sull'icona a forma di cartella di fianco al campo di selezione, utilizzare le seguenti impostazioni nella finestra di selezione del percorso:
 
-   * *selezionare l'icona a forma di ingranaggio in alto a destra*
+   * *selezionare l'icona a forma di ingranaggio in alto a destra:*
+   
+   ![path settings](https://www.joaulo.com/media/uploads/2020/04/26/screenshot_20200426_211442.jpeg)
 
-   * *disattivare il checkbox*
+   * *disattivare il checkbox:*
+   
+   ![checkbox_wrong](https://www.joaulo.com/media/uploads/2020/04/26/screenshot_20200426_211522.jpeg)
+   ![checkbox_right](https://www.joaulo.com/media/uploads/2020/04/26/screenshot_20200426_211731.jpeg)
 
-   * *verificare che il percorso nel campo sia il percorso completo del file*
+   * *verificare che il percorso nel campo sia il percorso completo del file:*
+   
+   ![full_path](https://www.joaulo.com/media/uploads/2020/04/26/screenshot_20200426_211802.jpeg)
 
 # TO DO
 
