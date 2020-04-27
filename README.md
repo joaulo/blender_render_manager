@@ -36,16 +36,16 @@ In both panels there is a field where you can select the path and the file to lo
 * do not use the relative path in the selection of files or folders within the addon, use only absolute paths! Due to a still unresolved problem, using the relative path with the file or folder will result in an error message when executing the command. To use absolute paths, after clicking on the folder icon next to the selection field, use the following settings in the path selection window:
 
    * *select the gear icon at the top right:*
-   
+
    ![path settings](https://www.joaulo.com/media/uploads/2020/04/26/screenshot_20200426_211442.jpeg)
 
    * *disable the checkbox:*
-   
+
    ![checkbox_wrong](https://www.joaulo.com/media/uploads/2020/04/26/screenshot_20200426_211522.jpeg)
    ![checkbox_right](https://www.joaulo.com/media/uploads/2020/04/26/screenshot_20200426_211731.jpeg)
 
    * *verify that the path in the field is the full path to the file:*
-   
+
    ![full_path](https://www.joaulo.com/media/uploads/2020/04/26/screenshot_20200426_211802.jpeg)
 
 # TO DO
@@ -53,3 +53,5 @@ In both panels there is a field where you can select the path and the file to lo
 * save different settings for each camera
 * load specific settings for each camera before launching the render
 * manage file extension
+* add progress bar to show rendering process
+* add a button to stop render process
