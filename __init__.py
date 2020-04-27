@@ -18,7 +18,7 @@ bl_info = {
     "location": "Render output panel",
     "description": "save/load render output settings and start render still images or animations in sequence for all the cameras in the selected collection",
     # "warning": "",  # used for warning icon and text in addons panel
-    "wiki_url": "",
+    "wiki_url": "https://www.joaulo.com/softworks/projects/blender-render-manager-blender-addon/",
     # "tracker_url": "",
 }
 
