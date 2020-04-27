@@ -1,0 +1,5 @@
+* save different settings for each camera
+* load specific settings for each camera before launching the render
+* manage file extension
+* add progress bar to show rendering process
+* add a button to stop render process
