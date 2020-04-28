@@ -7,7 +7,7 @@ It currently has a number of limitations, for this reason it has its usefulness 
 
 # Installation
 
-It installs like a standard Blender addon, just download the .zip file on your PC, then go to *Blender> Edit> Preferences...* follow the traditional installation. For more information, refer to the [Blender manual page](https://docs.blender.org/manual/en/latest/editors/preferences/addons.html?highlight=preferences).
+It installs like a standard Blender addon, just download the .zip file on your PC, then go to *Blender> Edit> Preferences...*, use the *Install…* button and use the File Browser to select the .zip add-on file. For more information, refer to the [Blender manual page](https://docs.blender.org/manual/en/latest/editors/preferences/addons.html?highlight=preferences).
 
 # How does it work?
 
