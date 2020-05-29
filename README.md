@@ -37,7 +37,7 @@ In both panels there is a field where you can select the path and the file to lo
 
    * *select the gear icon at the top right:*
 
-   ![path settings](https://www.joaulo.com/media/uploads/2020/04/26/screenshot_20200426_211442.jpeg)
+   ![path settings](https://www.joaulo.com/media/uploads/2020/05/10/screenshot_20200426_211442.jpeg)
 
    * *disable the checkbox:*
 
